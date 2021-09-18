@@ -126,7 +126,8 @@ function findBotBestMove(board){
     let move = [-1, -1];
 
     // Hard Coded Stuff :)
-    
+    if(movesLeft(board) > 7 && board[1][1] == 0)
+        return [1, 1];
 
     for(let i in board){
         for(let j in board[i]){
