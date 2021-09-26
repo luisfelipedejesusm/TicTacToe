@@ -82,10 +82,13 @@ function evaluate(board){
 
 function minimax(board, depth, isMaximizer){
     let score = evaluate(board);
-    score += isMaximizer? depth : -depth;
+    
 
     // Somebody won
-    if(score != 0) return score;
+    if(score != 0) {
+        score -= depth;
+        return score;
+    }
 
     // No more moves left
     if(!movesLeft(board)){
@@ -134,6 +137,7 @@ function findBotBestMove(board){
             if(board[i][j] == 0){
                 board[i][j] = bot;
                 let newMoveValue = minimax(board, 0, false);
+                console.log(newMoveValue)
                 // console.log([i, j], newMoveValue)
                 if(newMoveValue > bestMove){
                     bestMove = newMoveValue;
